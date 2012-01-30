@@ -1,0 +1,377 @@
+/* Reset */
+*{
+	margin:0;
+	padding:0;
+}
+
+/* Remove input autofocus webkit */
+*:focus {outline: none;}
+
+/* General Styles */
+html{
+	background:url('../img/bg_tile.jpg') repeat #191b19;
+	position:relative;
+	overflow:hidden;
+}
+
+body{
+	background:url('../img/bg.jpg') no-repeat center -180px;
+	font:14px/1.3 'Segoe UI',Arial, sans-serif;
+	color:#fff;
+	min-height:900px;
+}
+
+a, a:visited {
+	text-decoration:none;
+	outline:none;
+	color:#54a6de;
+}
+
+a:hover{
+	text-decoration:underline;
+}
+
+section, footer{
+	display: block;
+}
+
+p{
+	text-align:center;
+}
+
+hgroup{
+	padding-top:20px;
+	position:relative;
+	text-align:center;
+	width:500px;
+	margin:0 auto;
+}
+
+hgroup h1{
+	line-height:1;
+	display:inline-block;
+	font-weight:normal;
+	font-family: 'Open Sans Condensed', sans-serif;
+	background-color:#1a1a1a;
+	padding: 0.5em 2em;
+	margin-bottom:10px;
+}
+
+hgroup h1{
+	font-size:36px;
+}
+
+hgroup h1 i{
+	color:#ba3232;
+	font-style:normal;
+}
+
+code {
+  font-size:13px;
+}
+
+/* Vertical Accordion */
+.verticalaccordion>ul {
+  list-style:none;
+  position:relative;
+  text-align:center;
+  width:75%;
+  margin:0 auto;
+}
+
+.verticalaccordion>ul>li {
+  display:block;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  list-style:none;
+  height:40px;
+  background-color:#1a1a1a;
+
+  transition: height 0.3s ease-in-out;
+  -moz-transition: height 0.3s ease-in-out;
+  -webkit-transition: height 0.3s ease-in-out;
+  -o-transition: height 0.3s ease-in-out;
+
+}
+
+.verticalaccordion>ul>li>h2 {
+  border-top: 2px solid #454545;
+  display:block;
+	line-height:1;
+	font-weight:normal;
+	font-family: 'Open Sans Condensed', sans-serif;
+	background-color:#1a1a1a;
+	padding:10px;
+  font-size:18px;
+  margin: 0;
+}
+
+.verticalaccordion>ul>li>h2 i{
+	color:#ba3232;
+	font-style:normal;
+  font-size:13px;
+}
+
+.verticalaccordion>ul>li>div {
+  margin:0;
+  overflow: auto;
+  padding:10px;
+  height:50px;
+}
+
+.verticalaccordion>ul>li:hover {
+	height: 80px;
+}
+
+.verticalaccordion:hover>ul>li:hover>h2 {
+  border-top: 2px solid #ba3232;
+  border-bottom: 2px solid #ba3232;
+  cursor:pointer;
+}
+
+/* Footer */
+footer{
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	height: 45px;
+	width: 100%;
+	z-index: 100000;
+	text-align: center;
+	background-color: #111111;
+	box-shadow: 0 -1px 2px #111111;
+}
+
+footer img {
+	position: fixed;
+	bottom: 0;
+	right: 0;
+	padding: 0 7px 7px 0;
+}
+
+footer h2{
+	color: #888;
+	font-size: 14px;
+	font-weight: normal;
+}
+
+footer h2 i{
+	font-style:normal;
+	color:#EEEEEE;
+}
+
+footer a, a:visited{
+	color: #999999;
+	font-size: 12px;
+	text-decoration: none;
+}
+
+footer a i{
+	color:#ccc;
+	font-style: normal;
+}
+
+footer a i b{
+	color:#c92020;
+	font-weight: normal;
+}
+
+
+/* Overlay Window */
+.overlay {
+  display: none;
+  top: 0;
+  position: fixed;
+  width: 100%;
+  height: 230px;
+  background:url('../img/bg_tile.jpg') repeat #191b19;
+  border-bottom: 3px solid #ba3232;
+}
+
+.overlay h2 {
+line-height: 1;
+display: inline-block;
+font-weight: normal;
+font-family: 'Open Sans Condensed', sans-serif;
+padding: 0.5em 2em;
+margin-bottom: 10px;
+font-size: 36px;
+}
+
+/* Fixed images on top */
+#github-img {
+position: absolute;
+top: 0;
+right: 0;
+border: 0;
+}
+
+/* Add new link - Form Typography */
+#addlink-open {
+  cursor:pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border: 0;
+}
+.addlink-form h2, .addlink-form label {font-family:Georgia, Times, "Times New Roman", serif;}
+.addlink-form-hint {font-size: 11px;}
+
+/* Add new link - Form List Styles */
+.addlink-form ul {
+  width:100%;
+  list-style-type:none;
+	list-style-position:outside;
+	margin:0px;
+	padding:0px;
+}
+
+.addlink-form li{
+	padding:12px;
+	position:relative;
+} 
+
+/* Add new link - Form Elements */
+.addlink-form label {
+	margin-top: 3px;
+	display:inline-block;
+	float:left;
+	padding:3px 20px 3px 3px;
+}
+
+.addlink-form input {
+	height:20px; 
+	width:70%; 
+	padding:5px 8px;
+}
+
+.addlink-form button {margin-left:156px;}
+
+/* Add new link - Form element visual styles */
+.addlink-form input { 
+	border:1px solid #aaa;
+	box-shadow: 0px 0px 3px #ccc, 0 10px 15px #eee inset;
+	border-radius:2px;
+	padding-right:30px;
+	-moz-transition: padding .25s; 
+	-webkit-transition: padding .25s; 
+	-o-transition: padding .25s;
+	transition: padding .25s;
+}
+
+.addlink-form input:focus {
+	background: #fff; 
+	border:1px solid #555; 
+	box-shadow: 0 0 3px #aaa; 
+	padding-right:70px;
+}
+
+/* Add new link - HTML5 validation styles */	
+.addlink-form input:required {
+	background: #fff url(../img/red_asterisk.png) no-repeat 98% center;
+}
+
+.addlink-form input:required:valid {
+	background: #fff url(../img/valid.png) no-repeat 98% center;
+	box-shadow: 0 0 5px #5cd053;
+	border-color: #28921f;
+}
+
+.addlink-form input:focus:invalid {
+	background: #fff url(../img/invalid.png) no-repeat 98% center;
+	box-shadow: 0 0 5px #d45252;
+	border-color: #b03535
+}
+
+/* Add new link - Form hints */
+.addlink-form-hint {
+	background: #d45252;
+	border-radius: 3px 3px 3px 3px;
+	color: white;
+	margin-left:8px;
+	padding: 1px 6px;
+	z-index: 999;
+	position: absolute;
+	display: none;
+}
+
+.addlink-form-hint::before {
+	content: "\25C0";
+	color:#d45252;
+	position: absolute;
+	top:1px;
+	left:-6px;
+}
+.addlink-form input:focus + .addlink-form-hint {display: inline;}
+.addlink-form input:required:valid + .addlink-form-hint {background: #28921f;}
+.addlink-form input:required:valid + .addlink-form-hint::before {color:#28921f;}
+	
+/* Add new link - Button Style */
+button {
+	background-color: #b12f2f;
+	background: -webkit-gradient(linear, left top, left bottom, from(#b12f2f), to(#911e1e));
+	background: -webkit-linear-gradient(top, #b12f2f, #911e1e);
+	background: -moz-linear-gradient(top, #b12f2f, #911e1e);
+	background: -ms-linear-gradient(top, #b12f2f, #911e1e);
+	background: -o-linear-gradient(top, #b12f2f, #911e1e);
+	background: linear-gradient(top, #b12f2f, #911e1e);
+	border: 1px solid #911111;
+	border-bottom: 1px solid #992b2b;
+	border-radius: 3px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	-ms-border-radius: 3px;
+	-o-border-radius: 3px;
+	box-shadow: inset 0 1px 0 0 #d57474;
+	-webkit-box-shadow: 0 1px 0 0 #d57474 inset ;
+	-moz-box-shadow: 0 1px 0 0 #d57474 inset;
+	-ms-box-shadow: 0 1px 0 0 #d57474 inset;
+	-o-box-shadow: 0 1px 0 0 #d57474 inset;
+	color: white;
+	font-weight: bold;
+	padding: 6px 20px;
+	text-align: center;
+	text-shadow: 0 -1px 0 #671515;
+}
+
+button:hover {
+	opacity:.85;
+	cursor: pointer; 
+}
+
+button:active {
+	border: 1px solid #911e1e;
+	box-shadow: 0 0 10px 5px #6b0b0b inset; 
+	-webkit-box-shadow:0 0 10px 5px #6b0b0b inset ;
+	-moz-box-shadow: 0 0 10px 5px #6b0b0b inset;
+	-ms-box-shadow: 0 0 10px 5px #6b0b0b inset;
+	-o-box-shadow: 0 0 10px 5px #6b0b0b inset;
+}
+
+/* Search */
+.search {
+  list-style:none;
+  position:relative;
+  text-align:center;
+  width:75%;
+  height:40px;
+  margin:0 auto;
+  padding: 0 0 20px 0;
+  background-color:#1a1a1a;
+}
+
+.search input {
+	height:20px; 
+	width:70%; 
+	padding:5px 8px;
+	border:1px solid #aaa;
+	box-shadow: 0px 0px 3px #ccc, 0 10px 15px #eee inset;
+	border-radius:2px;
+}
+
+.search input:focus {
+	background: #fff; 
+	border:1px solid #555; 
+	box-shadow: 0 0 3px #aaa;
+}

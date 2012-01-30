@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<hgroup>
+  <h1>WEB - <i>LINKS</i></h1>
+</hgroup>
+
+<div class="search">
+  <input id="search-input" name="search" placeholder="Search..." type="text">
+  <button id="search-button" type="button">Search</button>
+</div>
+
+<div id="links" class="verticalaccordion">
+</div>
+
+
+<a href="http://github.com/tonybolzan">
+  <img id="github-img" src="/static/img/github.png" alt="Fork me on GitHub">
+</a>
+<img class="fixed-img" id="addlink-open" src="/static/img/addlink.png" alt="Add Link">
+
+<div id="addlink-overlay" class="overlay">
+  <form id="addlink-form" class="addlink-form">
+    <ul>
+      <li>
+        <label for="title">Title:</label>
+        <input name="title" type="text" placeholder="My web site" required />
+        <span class="addlink-form-hint">Description of your link.</span>
+      </li>
+      <li>
+        <label for="tags">Tags:</label>
+        <input name="tags" type="text" placeholder="python, jquery, html5..." required pattern="\w(\w|, |,\w)+"/>
+        <span class="addlink-form-hint">Please separated by commas.</span>
+      </li>
+      <li>
+        <label for="url">URL:</label>
+        <input name="url" type="url" placeholder="http://tonybolzan.com" required pattern="(http|https)://.+"/>
+        <span class="addlink-form-hint">Proper format "http://someaddress.com"</span>
+      </li>
+      <li>
+        <button id="addlink-submit" type="submit">Add new Link</button>
+        <button id="addlink-close" type="button">Close/Cancel</button>
+      </li>
+    </ul>
+  </form>
+</div>
+
+<div id="message" class="overlay"></div>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.js"></script>
+<script>window.jQuery || document.write('<script src="js/libs/jquery-1.5.1.min.js">\x3C/script>')</script>
+<script src="/static/js/functions.js"></script>
+{% endblock %}
+
