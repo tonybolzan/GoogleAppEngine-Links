@@ -52,7 +52,7 @@ $(document).ready(function() {
   });
   
   message.click(function() {
-    $(this).slideToggle("slow");
+    $(this).slideUp("slow");
   });
 
   button_lastmessage.click(function() {
@@ -62,9 +62,14 @@ $(document).ready(function() {
 	addlink_form.submit(function() {
 		$.post("/insert", addlink_form.serialize(), function(data) {
 		  addlink_overlay.slideToggle('slow', function() {
-        message.html('<h2>'+data.feedback+'<h2>').slideToggle('slow', function() {
-          $(this).delay(800).slideToggle('fast');
+        message.html('<h2>'+data.msg+'</h2>').slideToggle('slow', function() {
+          $(this).delay(1000).slideUp('fast');
           button_lastmessage.show('slow');
+          if (data.feedback) {
+            addlink_form.find(':input').each(function() {
+              $(this).val('')
+            });
+          }
         });
       });
 		}, "json");

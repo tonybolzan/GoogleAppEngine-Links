@@ -4,6 +4,7 @@ import os
 import cgi
 from datetime import datetime
 
+from google.appengine.api import memcache
 from google.appengine.ext import webapp
 from google.appengine.ext.webapp import template
 
@@ -34,13 +35,14 @@ class Insert(webapp.RequestHandler):
       tags_  = cgi.escape(self.request.get('tags')).lower()
 
       if not Link.gql("WHERE url = :1", url_):
-        self.response.out.write('{"feedback":"Este link ja existe."}')
+        self.response.out.write('{"feedback":true, "msg":"Este link ja existe."}')
       else:
         Link(title=title_, url=url_, tags=tags_).put()
-        self.response.out.write('{"feedback":"Link inserido com sucesso!"}')
+        memcache.delete("last")
+        self.response.out.write('{"feedback":false, "msg":"Link inserido com sucesso!"}')
         
     except Exception, e:
-      self.response.out.write('{"feedback":"Erro interno do servidor."}')
+      self.response.out.write('{"feedback":false, "msg":"Erro interno do servidor."}')
 
 
 class Delete(webapp.RequestHandler):
@@ -74,5 +76,11 @@ class Search(webapp.RequestHandler):
 class Last(webapp.RequestHandler):
   def post(self):
     self.response.headers['Content-Type'] = 'application/json'
-    links = Link.all().order("-date").fetch(30)
+    
+    links = memcache.get("last")
+    if links is None:
+      links = Link.all().order("-date").fetch(15)
+      if not memcache.add("last", links, 3600):
+            logging.error("Memcache set failed.")
+      
     show(self,links)

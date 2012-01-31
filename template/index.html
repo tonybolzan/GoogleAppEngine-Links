@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<hgroup>
+<header>
   <h1>WEB - <i>LINKS</i></h1>
-</hgroup>
+</header>
 
 <div class="search">
   <input id="search-input" name="search" placeholder="Search..." type="text">
@@ -39,6 +39,7 @@
       </li>
       <li>
         <button id="addlink-submit" type="submit">Add new Link</button>
+        <button type="reset">Clear</button>
         <button id="addlink-close" type="button">Close/Cancel</button>
       </li>
     </ul>
