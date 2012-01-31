@@ -42,6 +42,13 @@ class Insert(webapp.RequestHandler):
     except Exception, e:
       self.response.out.write('{"feedback":"Erro interno do servidor."}')
 
+
+class Delete(webapp.RequestHandler):
+  def post(self):
+    self.response.headers['Content-Type'] = 'application/json'
+    url = cgi.escape(self.request.get('url')).lower()
+    self.response.out.write(url)
+
 def show(self,links):
   response = []
   for link in links:
@@ -49,10 +56,11 @@ def show(self,links):
       link_dict = {"title": link.title.capitalize(),
                    "url": link.url,
                    "tags": link.tags,
-                   "date": link.date.strftime("Postado em %d/%m/%Y as %H:%M:%S")}
+                   "date": link.date.strftime("Posted on %m/%d/%Y at %H:%M:%S")}
       response.append(link_dict)
 
   self.response.out.write(simplejson.dumps(response))
+
 
 class Search(webapp.RequestHandler):
   def post(self):
@@ -64,7 +72,7 @@ class Search(webapp.RequestHandler):
       
 
 class Last(webapp.RequestHandler):
-  def get(self):
+  def post(self):
     self.response.headers['Content-Type'] = 'application/json'
     links = Link.all().order("-date").fetch(30)
     show(self,links)

@@ -10,6 +10,7 @@ def main():
     ('/index', Index),
     ('/index.html', Index),
     ('/insert', Insert),
+    ('/delete', Delete),
     ('/search', Search),
     ('/last', Last),
     ('/.*', Error)

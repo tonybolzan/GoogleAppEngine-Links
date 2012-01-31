@@ -113,6 +113,18 @@ code {
   font-size:13px;
 }
 
+/* Date and time of the post */
+.verticalaccordion>ul>li>h2 span{
+  visibility: hidden;
+  float: right;
+	font-style:normal;
+  font-size:13px;
+}
+
+.verticalaccordion>ul>li:hover span {
+  visibility: visible;
+}
+
 .verticalaccordion>ul>li>div {
   margin:0;
   overflow: auto;
@@ -137,7 +149,7 @@ footer{
 	left: 0;
 	height: 45px;
 	width: 100%;
-	z-index: 100000;
+	z-index: 10;
 	text-align: center;
 	background-color: #111111;
 	box-shadow: 0 -1px 2px #111111;
@@ -147,7 +159,7 @@ footer img {
 	position: fixed;
 	bottom: 0;
 	right: 0;
-	padding: 0 7px 7px 0;
+	margin: 0 7px 7px 0;
 }
 
 footer h2{
@@ -307,7 +319,7 @@ border: 0;
 .addlink-form input:required:valid + .addlink-form-hint {background: #28921f;}
 .addlink-form input:required:valid + .addlink-form-hint::before {color:#28921f;}
 	
-/* Add new link - Button Style */
+/* Buttons Style */
 button {
 	background-color: #b12f2f;
 	background: -webkit-gradient(linear, left top, left bottom, from(#b12f2f), to(#911e1e));
@@ -347,6 +359,20 @@ button:active {
 	-moz-box-shadow: 0 0 10px 5px #6b0b0b inset;
 	-ms-box-shadow: 0 0 10px 5px #6b0b0b inset;
 	-o-box-shadow: 0 0 10px 5px #6b0b0b inset;
+}
+
+button.delete {
+  float: right;
+  margin: -6px 0 0;
+}
+
+button#last-message {
+  visibility: hidden;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+	z-index: 20;
+	margin: 0 0 7px 7px;
 }
 
 /* Search */
