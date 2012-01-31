@@ -64,7 +64,7 @@ $(document).ready(function() {
 		  addlink_overlay.slideToggle('slow', function() {
         message.html('<h2>'+data.feedback+'<h2>').slideToggle('slow', function() {
           $(this).delay(800).slideToggle('fast');
-          button_lastmessage.show();
+          button_lastmessage.show('slow');
         });
       });
 		}, "json");

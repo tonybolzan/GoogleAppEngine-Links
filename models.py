@@ -8,9 +8,3 @@ class Link(search.SearchableModel):
     url   = db.StringProperty()
     tags  = db.StringProperty()
     date  = db.DateTimeProperty(auto_now_add=True)
-
-#class Link(db.Model):
-#    title = db.StringProperty()
-#    url   = db.StringProperty()
-#    tags  = db.StringProperty()
-#    date  = db.DateTimeProperty(auto_now_add=True)
