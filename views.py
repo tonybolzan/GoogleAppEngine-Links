@@ -35,11 +35,11 @@ class Insert(webapp.RequestHandler):
       tags_  = cgi.escape(self.request.get('tags')).lower()
 
       if not Link.gql("WHERE url = :1", url_):
-        self.response.out.write('{"feedback":true, "msg":"Este link ja existe."}')
+        self.response.out.write('{"feedback":false, "msg":"Este link ja existe."}')
       else:
         Link(title=title_, url=url_, tags=tags_).put()
         memcache.delete("last")
-        self.response.out.write('{"feedback":false, "msg":"Link inserido com sucesso!"}')
+        self.response.out.write('{"feedback":true, "msg":"Link inserido com sucesso!"}')
         
     except Exception, e:
       self.response.out.write('{"feedback":false, "msg":"Erro interno do servidor."}')
