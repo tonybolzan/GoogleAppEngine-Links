@@ -37,7 +37,7 @@ class Insert(webapp.RequestHandler):
       if not Link.gql("WHERE url = :1", url_):
         self.response.out.write('{"feedback":false, "msg":"Este link ja existe."}')
       else:
-        Link(title=title_, url=url_, tags=tags_).put()
+        Link(title=title_, url=url_, tags=tags_).save()
         memcache.delete("last")
         self.response.out.write('{"feedback":true, "msg":"Link inserido com sucesso!"}')
         
@@ -81,6 +81,6 @@ class Last(webapp.RequestHandler):
     if links is None:
       links = Link.all().order("-date").fetch(15)
       if not memcache.add("last", links, 3600):
-            logging.error("Memcache set failed.")
+        logging.error("Memcache set failed.")
       
     show(self,links)
