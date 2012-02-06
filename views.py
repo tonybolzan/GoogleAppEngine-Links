@@ -34,12 +34,17 @@ class Insert(webapp.RequestHandler):
       url_   = cgi.escape(self.request.get('url')).lower()
       tags_  = cgi.escape(self.request.get('tags')).lower()
 
-      if not Link.gql("WHERE url = :1", url_):
+      flag = False
+      for x in Link.all().filter("url =", url_):
+        if x.url:
+          flag = True
+
+      if flag:
         self.response.out.write('{"feedback":false, "msg":"Este link ja existe."}')
       else:
         Link(title=title_, url=url_, tags=tags_).save()
         memcache.delete("last")
-        self.response.out.write('{"feedback":true, "msg":"Link inserido com sucesso!"}')
+        self.response.out.write('{"feedback":true, "msg":"Link <span>%s</span> inserido com sucesso!"}' % url_)
         
     except Exception, e:
       self.response.out.write('{"feedback":false, "msg":"Erro interno do servidor."}')
@@ -48,8 +53,14 @@ class Insert(webapp.RequestHandler):
 class Delete(webapp.RequestHandler):
   def post(self):
     self.response.headers['Content-Type'] = 'application/json'
-    url = cgi.escape(self.request.get('url')).lower()
-    self.response.out.write(url)
+    try:
+      url = cgi.escape(self.request.get('url')).lower()
+      for link in Link.all().filter("url =", url):
+        link.delete()
+      memcache.delete("last")
+      self.response.out.write('{"feedback":true, "msg":"Link <span>%s</span> removido com sucesso!"}' % url)
+    except Exception, e:
+      self.response.out.write('{"feedback":false, "msg":"Erro interno do servidor."}')
 
 def show(self,links):
   response = []
@@ -57,7 +68,7 @@ def show(self,links):
     if link.title:
       link_dict = {"title": link.title.capitalize(),
                    "url": link.url,
-                   "tags": link.tags,
+                   "tags": link.tags.capitalize(),
                    "date": link.date.strftime("Posted on %m/%d/%Y at %H:%M:%S")}
       response.append(link_dict)
 

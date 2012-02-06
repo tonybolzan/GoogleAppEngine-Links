@@ -1,20 +1,19 @@
-/*
-// usage: log('inside coolFunc', this, arguments);
-// paulirish.com/2009/log-a-lightweight-wrapper-for-consolelog/
-window.log = function(){
-  log.history = log.history || [];   // store logs to an array for reference
-  log.history.push(arguments);
-  if(this.console) {
-    arguments.callee = arguments.callee.caller;
-    var newarr = [].slice.call(arguments);
-    (typeof console.log === 'object' ? log.apply.call(console.log, console, newarr) : console.log.apply(console, newarr));
-  }
-};
+/* Tonybolzan - Links */
 
-// make it safe to use console.log always
-(function(b){function c(){}for(var d="assert,clear,count,debug,dir,dirxml,error,exception,firebug,group,groupCollapsed,groupEnd,info,log,memoryProfile,memoryProfileEnd,profile,profileEnd,table,time,timeEnd,timeStamp,trace,warn".split(","),a;a=d.pop();){b[a]=b[a]||c}})((function(){try
-{console.log();return window.console;}catch(err){return window.console={};}})());
-*/
+var lastmessage_button = $('#last-message');
+var message = $('#message');
+
+jQuery.fn.loadDelete = function() {
+  $('.delete').click(function() {
+		$.post("/delete", { url: $(this).data('url') }, function(data) {
+      message.html('<h2>'+data.msg+'</h2>').slideToggle('slow', function() {
+        $(this).delay(1000).slideUp('fast');
+        lastmessage_button.show('slow');
+      });
+		}, "json");
+		$(window).load();
+  });
+};
 
 function show(data) {
   var result = '';
@@ -40,7 +39,7 @@ function show(data) {
     result += '</li>';
   }
 
-  $("#links").html('<ul>'+result+'</ul>');
+  $("#links").html('<ul>'+result+'</ul>').loadDelete();
 }
 
 $(window).load(function() {
@@ -56,11 +55,7 @@ $(document).ready(function() {
   var addlink_overlay = $('#addlink-overlay');
   
   var search_form = $("#search-form");
-  
-  var delete_button = $('.delete');
-  var lastmessage_button = $('#last-message');
-  var message = $('#message');
-  
+
   addlink_toggle.click(function() {
     addlink_overlay.slideToggle("slow");
   });
@@ -97,11 +92,4 @@ $(document).ready(function() {
 		}, "json");
 	  return false;
 	});
-
-  delete_button.click(function() {
-    console.log("teste");
-		$.post("/delete", { url: delete_button.data('url') }, function(data) {
-      alert(data);
-		});
-  });
 });
